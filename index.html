@@ -40,32 +40,40 @@
             </div>
         </div>
     </nav>
-    <div class="slider">
-        <div class="slide" style="background-color: yellow;"></div>
-        <div class="slide" style="background-color: blue;"></div>
-        <div class="slide" style="background-color: white;"></div>
-      </div>
-      
-      <style>
-      .slider {
-        width: 500px;
-        height: 300px;
-        overflow: hidden;
-      }
-      
-      .slide {
-        width: 500px;
-        height: 300px;
-        position: absolute;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-      }
-      
-      .slide.active {
-        opacity: 1;
-      }
-      </style>
-    <section class="hero">
+   <div class="slider">
+  <div class="slide" style="background-color: yellow;"></div>
+  <div class="slide" style="background-color: blue;"></div>
+  <div class="slide" style="background-color: white;"></div>
+  <button class="prev">Önceki</button>
+  <button class="next">Sonraki</button>
+</div>
+
+<style>
+/* ... (yukarıdaki CSS koduna benzer) ... */
+</style>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function showSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  slides[n].classList.add('active');
+  currentSlide = n;
+}
+
+document.querySelector('.prev').addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+});
+
+document.querySelector('.next').addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+showSlide(currentSlide); // İlk slaydı göster
+</script>
         <div>
             <h1>Merhaba, Ben Aytuncan</h1>
             <p>Yazılım geliştiricisi ve web tasarımcısıyım.</p>
